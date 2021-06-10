@@ -1,0 +1,265 @@
+{% extends "template.html" %}
+{% block content %}
+<style type="text/css">
+	.coeff {
+		align-self: center;
+		margin-left: 260px;
+	}
+	.coeff1 {
+		align-self: center;
+		margin-left: 0px;
+	}
+	.coeff2 {
+		align-self: center;
+		margin-left: 00px;
+	}
+</style>
+<body>
+	<div class="stage" id="stage">
+
+	  <div class="container py-4  app-navbar">
+	  <nav class="navbar navbar-transparent navbar-padded navbar-toggleable-sm" >
+	    <button
+	      class="navbar-toggler navbar-toggler-right hidden-md-up"
+	      type="button"
+	      data-target="#stage"
+	      data-toggle="stage"
+	      data-distance="-250">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+
+	      <h3>Can you go<mark class='mark-style'>Water positive</mark>?</h3>
+		
+		
+	    <div class="hidden-sm-down text-uppercase">
+      		<ul class="navbar-nav">
+        		<li class="nav-item px-1 ">
+          	<a class="nav-link text-secondary" href="{{ url_for('home') }}"><h6>Home</h6></a>
+        	</li>
+      		</ul>
+    	</div>
+
+	  </nav>
+	</div>
+
+
+<div class="container-fluid col-md-12 text-center">
+				<br>
+				
+			</div>
+		<br>
+		<section id="first-step" class="step content-100">
+			<div class="container">
+				
+				<div class="margin-top25">
+					<div class="row">
+						
+
+						<div class="col-md-12 area step1">
+
+
+							<div class="right text-center">
+								{% if val == 1: %}
+								
+								<div class="coeff1">
+								    
+								    <h3>Upload new File</h3>
+								    <br>
+								</div>
+								<div class="coeff2">
+								    <form method=post enctype=multipart/form-data>
+								      <input type=file name=file>
+								      <input type=submit value=Upload>
+								    </form>
+								    <br>
+								</div>
+								
+							{% endif %}
+							{% if filename %}
+							<div>
+								<br>
+
+								<h3>Rooftop Detected and Segmented!</h3>
+								<img src="{{ url_for('static', filename=filename) }}" alt="Please upload image">
+								
+							</div>
+							{% endif %}
+
+									<select name="state" id="state" class="form-control" data-dropup-auto="false">
+										<option value="2782">Andhra Pradesh</option>
+										<option value="2967">Andaman and Nicobar Islands</option>
+										<option value="2782">Arunachal Pradesh</option>
+										<option value="2818">Assam</option>
+										<option value="1326">Bihar</option>
+										<option value="617">Chandigarh</option>
+										<option value="1409">Chhattisgarh</option>
+										<option value="617">Delhi</option>
+										<option value="1515">Lakshadweep</option>
+										<option value="998">Puducherry</option>
+										<option value="3005">Goa</option>
+										<option value="700">Gujarat</option>
+										<option value="617">Haryana</option>
+										<option value="1251">Himachal Pradesh</option>
+										<option value="1011">Jammu and Kashmir</option>
+										<option value="1326">Jharkhand</option>
+										<option value="2550">Karnataka</option>
+										<option value="3055">Kerala</option>
+										<option value="1017">Madhya Pradesh</option>
+										<option value="1034">Maharashtra</option>
+										<option value="1881">Manipur</option>
+										<option value="2818">Meghalaya</option>
+										<option value="1881">Mizoram</option>
+										<option value="1881">Nagaland</option>
+										<option value="1489">Odisha</option>
+										<option value="649">Punjab</option>
+										<option value="313">Rajasthan</option>
+										<option value="2739">Sikkim</option>
+										<option value="998">Tamil Nadu</option>
+										<option value="2782">Telangana</option>
+										<option value="1881">Tripura</option>
+										<option value="1667">Uttar Pradesh</option>
+										<option value="1069">Uttarakhand</option>
+										<option value="2739">West Bengal</option>
+										</select>
+									<div class="submit-button">
+										<button id="calculate" class="btn"> <a href="#second-step" class="button glow-button">Calculate</a>
+
+											
+									</div>
+
+								</form>
+								<hr>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class='bottom-space'>
+				</div>
+			</div>
+		</section>
+		<br><br>
+		<section id="second-step" class="step content-100">
+			<div class="container">
+				<h1 class="text-center section-heading">What you need to be self-sufficient</h1>
+				<hr class="tall">
+				
+				<p class="text-center section-content">
+					<strong style="font-size: 1.5em;">Based on your Roof Image our program computes:</strong>
+				</p>
+				
+				
+		
+				<div class="margin-top25">
+					<div class="row">
+						<div class="col-md-12 area step1 text-center">
+							<div class="right">
+								<form id="apply-form">
+									<div class="group has-value">
+										{% if dims %}
+											<strong><p class="form-style">Effective Catchment Area (sqm)</p></strong>
+											<input id="panelSize" type="text" required value="{{ dims }}">
+											<br><br>
+										{% else %}
+											<strong><p class="form-style">Effective Catchment Area (sqm)</p></strong>
+											<input id="panelSize" type="text" required value="{{dims}}">
+											<br><br>
+										{% endif %}
+									</div>
+									<div class="group has-value">
+										<strong><p class="form-style">Predicted Rainfall Volume (l)</p></strong>
+										<input id="predictedRainfall" type="text" required value="">
+
+										<br><br>
+									</div>
+
+									<div class="group has-value">
+									    <strong><p class="form-style">Total investment (INR)</p></strong>
+										<input id="investment" type="text" required value="">
+										<br><br>
+									</div>
+									<div class="group has-value">
+										<strong><p class="form-style">Return of investment from water savings</p></strong>
+										<input id="returnOfInvestment" type="text" required value="">
+										<br><br>
+									</div>
+									<div class="group has-value">
+										<strong><p class="form-style">Tentative Maintenance Cost (Quaterly)</p></strong>
+										<input id="maintenance" type="text" required value="">
+										<br><br>
+									</div>
+									<div class="submit-button">
+										<br>
+										<!-- 8<button class="btn" id="tips"><a class="button glow-button" href="#final">Water Saving Tips</a> -->
+										</button>
+									</div>
+									<div id="solution">
+
+									</div>
+								</form>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class='bottom-space'>
+					<br>
+					<br>
+				</div>
+			</div>
+		</section>
+	<script>
+		var val = 0;
+	</script>
+	<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+	<script type="text/javascript">
+
+		$('#calculate').click(function(e){
+
+			// var mems = $('#members').val();
+			// var fams = $('#families').val();
+
+			var conceptName = $('#state').find(":selected").val();
+
+			//Roof Area (m2) X Precipitation Amount (mm) = Amount Collected (liters)
+
+			var rainfall = parseInt(conceptName,10);
+
+			console.log("Yo");
+			console.log(conceptName);
+			console.log(rainfall*5);
+			var mems = 4;
+			var fams = 1;
+			console.log(mems);
+			let mult = mems * fams;
+			
+			// $('#predictedRainfall').val({{dims}} * 935.12/12);
+			// values = {{dims}} * 935.12/12;
+			// console.log(values);
+
+			$('#predictedRainfall').val({{dims}} * rainfall*0.85);
+			values = {{dims}} * rainfall*0.85;
+			console.log(values);
+
+
+			// const conversion = 115812*3/(104720/12);
+			let conversion = 500;
+			if(rainfall>1500)
+			conversion = 500;
+			 else
+			  conversion =50;
+			$('#investment').val((conversion * {{dims}})+30000);
+			let invest = (conversion * {{dims}}) + 30000;
+
+			// cost per litre 0.070
+			const roi = invest/(values*0.070) ;
+			$('#returnOfInvestment').val(roi + ' year(s)');
+			
+			$('#maintenance').val(invest * 0.005)
+
+		});
+	</script>
+   
+</body>
+</html>
+{% endblock content %}
