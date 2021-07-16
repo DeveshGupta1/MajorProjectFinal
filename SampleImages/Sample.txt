@@ -1,0 +1,1 @@
+This Folder contains sample images used for testing the working of the application.
